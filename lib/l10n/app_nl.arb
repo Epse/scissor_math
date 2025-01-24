@@ -1,3 +1,8 @@
 {
-  "appTitle": "Scissor Math"
+  "appTitle": "Scissor Math",
+  "lSystem": "Lutterloh Systeem",
+  "correction": "Correctiefactor: {correction} {unit}",
+  "result": "Resultaat: {result} {unit}",
+  "patternRadius": "Straal van patroon",
+  "measurementHipBust": "Maat (heup of borst) in cm"
 }

@@ -1,3 +1,22 @@
 {
-  "appTitle": "Scissor Math"
+  "appTitle": "Scissor Math",
+  "lSystem": "Lutterloh System",
+  "correction": "Correction Factor: {correction} {unit}",
+  "@correction": {
+    "placeholders": {
+      "correction": {},
+      "unit": {}
+    }
+  },
+  "result": "Result: {result} {unit}",
+  "@result": {
+    "placeholders": {
+      "unit": {
+        "type": "String",
+        "example": "cm"
+      }
+    }
+  },
+  "patternRadius": "Radius from pattern",
+  "measurementHipBust": "Measurement (hip or bust) in cm"
 }
