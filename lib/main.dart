@@ -18,7 +18,9 @@ class MyApp extends StatelessWidget {
       },
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 255, 221, 86)),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: Color.fromARGB(255, 255, 221, 86),
+            dynamicSchemeVariant: DynamicSchemeVariant.fidelity),
         useMaterial3: true,
       ),
       supportedLocales: AppLocalizations.supportedLocales,
@@ -28,4 +30,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

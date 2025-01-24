@@ -34,7 +34,7 @@ class _LutterlohScreenState extends State<LutterlohScreen> {
           child: ListView(children: [
             Text(AppLocalizations.of(context)!.lSystem,
                 style: Theme.of(context).textTheme.headlineLarge),
-            Padding(padding: EdgeInsets.all(32.0)),
+            Padding(padding: EdgeInsets.all(16.0)),
             TextField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -47,12 +47,12 @@ class _LutterlohScreenState extends State<LutterlohScreen> {
                     measurement = double.tryParse(input) ?? 0;
                   });
                 }),
-            Padding(padding: EdgeInsets.all(16.0)),
+            Padding(padding: EdgeInsets.all(8.0)),
             Text(
                 AppLocalizations.of(context)!.correction(
                     _lutterlohCorrection(measurement).toStringAsFixed(1), "cm"),
                 style: Theme.of(context).textTheme.titleMedium),
-            Padding(padding: EdgeInsets.all(16.0)),
+            Padding(padding: EdgeInsets.all(8.0)),
             TextField(
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
@@ -66,7 +66,7 @@ class _LutterlohScreenState extends State<LutterlohScreen> {
                 });
               },
             ),
-            Padding(padding: EdgeInsets.all(16.0)),
+            Padding(padding: EdgeInsets.all(8.0)),
             Text(
                 AppLocalizations.of(context)!.result(
                     "cm", _lutterloh(measurement, radius).toStringAsFixed(1)),
