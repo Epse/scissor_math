@@ -56,10 +56,10 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: Padding(
           padding: EdgeInsets.all(16.0),
-          child: Column(spacing: 16.0, children: [
+          child: ListView(children: [
             Text(AppLocalizations.of(context)!.lSystem,
                 style: Theme.of(context).textTheme.headlineLarge),
-            Padding(padding: EdgeInsets.all(16.0)),
+            Padding(padding: EdgeInsets.all(32.0)),
             TextField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -72,10 +72,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     measurement = double.tryParse(input) ?? 0;
                   });
                 }),
+            Padding(padding: EdgeInsets.all(16.0)),
             Text(
                 AppLocalizations.of(context)!.correction(
                     _lutterlohCorrection(measurement).toStringAsFixed(1), "cm"),
                 style: Theme.of(context).textTheme.titleMedium),
+            Padding(padding: EdgeInsets.all(16.0)),
             TextField(
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
@@ -89,6 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 });
               },
             ),
+            Padding(padding: EdgeInsets.all(16.0)),
             Text(
                 AppLocalizations.of(context)!.result(
                     "cm", _lutterloh(measurement, radius).toStringAsFixed(1)),
