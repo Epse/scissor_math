@@ -35,8 +35,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  double correction = 0.0;
-  double result = 0.0;
+  double measurement = 0.0;
+  double radius = 0.0;
+
+  double _lutterlohCorrection(double measurement) {
+    return 7 * (measurement - 96.0) / 46.0;
+  }
+
+  double _lutterloh(double measurement, double radius) {
+    return radius + _lutterlohCorrection(measurement);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,17 +57,24 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: EdgeInsets.all(16.0),
           child: Column(spacing: 16.0, children: [
             Text(AppLocalizations.of(context)!.lSystem,
-                style: Theme.of(context).textTheme.titleLarge),
+                style: Theme.of(context).textTheme.headlineLarge),
+            Padding(padding: EdgeInsets.all(16.0)),
             TextField(
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: AppLocalizations.of(context)!.measurementHipBust,
-              ),
-              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            ),
-            Text(AppLocalizations.of(context)!
-                .correction(correction.toString(), "cm")),
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: AppLocalizations.of(context)!.measurementHipBust,
+                ),
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                onChanged: (String input) {
+                  setState(() {
+                    measurement = double.tryParse(input) ?? 0;
+                  });
+                }),
+            Text(
+                AppLocalizations.of(context)!.correction(
+                    _lutterlohCorrection(measurement).toStringAsFixed(1), "cm"),
+                style: Theme.of(context).textTheme.titleMedium),
             TextField(
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
@@ -67,9 +82,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 labelText: AppLocalizations.of(context)!.patternRadius,
               ),
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              onChanged: (String input) {
+                setState(() {
+                  radius = double.tryParse(input) ?? 0;
+                });
+              },
             ),
-            Text(AppLocalizations.of(context)!.result("cm", result.toString()),
-                style: Theme.of(context).textTheme.headlineMedium)
+            Text(
+                AppLocalizations.of(context)!.result(
+                    "cm", _lutterloh(measurement, radius).toStringAsFixed(1)),
+                style: Theme.of(context).textTheme.titleLarge)
           ]),
         ));
   }
