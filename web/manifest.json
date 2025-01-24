@@ -1,6 +1,6 @@
 {
-    "name": "scissor_math",
-    "short_name": "scissor_math",
+    "name": "Scissor Math",
+    "short_name": "Scissor Math",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#ffdd56",
