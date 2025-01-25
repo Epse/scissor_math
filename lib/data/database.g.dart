@@ -31,8 +31,16 @@ class $MeasurementsTable extends Measurements
   late final GeneratedColumn<double> value = GeneratedColumn<double>(
       'value', aliasedName, false,
       type: DriftSqlType.double, requiredDuringInsert: true);
+  static const VerificationMeta _touchedMeta =
+      const VerificationMeta('touched');
   @override
-  List<GeneratedColumn> get $columns => [id, name, value];
+  late final GeneratedColumn<DateTime> touched = GeneratedColumn<DateTime>(
+      'touched', aliasedName, false,
+      type: DriftSqlType.dateTime,
+      requiredDuringInsert: false,
+      defaultValue: currentDateAndTime);
+  @override
+  List<GeneratedColumn> get $columns => [id, name, value, touched];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -58,6 +66,10 @@ class $MeasurementsTable extends Measurements
     } else if (isInserting) {
       context.missing(_valueMeta);
     }
+    if (data.containsKey('touched')) {
+      context.handle(_touchedMeta,
+          touched.isAcceptableOrUnknown(data['touched']!, _touchedMeta));
+    }
     return context;
   }
 
@@ -73,6 +85,8 @@ class $MeasurementsTable extends Measurements
           .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
       value: attachedDatabase.typeMapping
           .read(DriftSqlType.double, data['${effectivePrefix}value'])!,
+      touched: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}touched'])!,
     );
   }
 
@@ -86,14 +100,19 @@ class Measurement extends DataClass implements Insertable<Measurement> {
   final int id;
   final String name;
   final double value;
+  final DateTime touched;
   const Measurement(
-      {required this.id, required this.name, required this.value});
+      {required this.id,
+      required this.name,
+      required this.value,
+      required this.touched});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
     map['name'] = Variable<String>(name);
     map['value'] = Variable<double>(value);
+    map['touched'] = Variable<DateTime>(touched);
     return map;
   }
 
@@ -102,6 +121,7 @@ class Measurement extends DataClass implements Insertable<Measurement> {
       id: Value(id),
       name: Value(name),
       value: Value(value),
+      touched: Value(touched),
     );
   }
 
@@ -112,6 +132,7 @@ class Measurement extends DataClass implements Insertable<Measurement> {
       id: serializer.fromJson<int>(json['id']),
       name: serializer.fromJson<String>(json['name']),
       value: serializer.fromJson<double>(json['value']),
+      touched: serializer.fromJson<DateTime>(json['touched']),
     );
   }
   @override
@@ -121,19 +142,24 @@ class Measurement extends DataClass implements Insertable<Measurement> {
       'id': serializer.toJson<int>(id),
       'name': serializer.toJson<String>(name),
       'value': serializer.toJson<double>(value),
+      'touched': serializer.toJson<DateTime>(touched),
     };
   }
 
-  Measurement copyWith({int? id, String? name, double? value}) => Measurement(
+  Measurement copyWith(
+          {int? id, String? name, double? value, DateTime? touched}) =>
+      Measurement(
         id: id ?? this.id,
         name: name ?? this.name,
         value: value ?? this.value,
+        touched: touched ?? this.touched,
       );
   Measurement copyWithCompanion(MeasurementsCompanion data) {
     return Measurement(
       id: data.id.present ? data.id.value : this.id,
       name: data.name.present ? data.name.value : this.name,
       value: data.value.present ? data.value.value : this.value,
+      touched: data.touched.present ? data.touched.value : this.touched,
     );
   }
 
@@ -142,55 +168,66 @@ class Measurement extends DataClass implements Insertable<Measurement> {
     return (StringBuffer('Measurement(')
           ..write('id: $id, ')
           ..write('name: $name, ')
-          ..write('value: $value')
+          ..write('value: $value, ')
+          ..write('touched: $touched')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, name, value);
+  int get hashCode => Object.hash(id, name, value, touched);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is Measurement &&
           other.id == this.id &&
           other.name == this.name &&
-          other.value == this.value);
+          other.value == this.value &&
+          other.touched == this.touched);
 }
 
 class MeasurementsCompanion extends UpdateCompanion<Measurement> {
   final Value<int> id;
   final Value<String> name;
   final Value<double> value;
+  final Value<DateTime> touched;
   const MeasurementsCompanion({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
     this.value = const Value.absent(),
+    this.touched = const Value.absent(),
   });
   MeasurementsCompanion.insert({
     this.id = const Value.absent(),
     required String name,
     required double value,
+    this.touched = const Value.absent(),
   })  : name = Value(name),
         value = Value(value);
   static Insertable<Measurement> custom({
     Expression<int>? id,
     Expression<String>? name,
     Expression<double>? value,
+    Expression<DateTime>? touched,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (name != null) 'name': name,
       if (value != null) 'value': value,
+      if (touched != null) 'touched': touched,
     });
   }
 
   MeasurementsCompanion copyWith(
-      {Value<int>? id, Value<String>? name, Value<double>? value}) {
+      {Value<int>? id,
+      Value<String>? name,
+      Value<double>? value,
+      Value<DateTime>? touched}) {
     return MeasurementsCompanion(
       id: id ?? this.id,
       name: name ?? this.name,
       value: value ?? this.value,
+      touched: touched ?? this.touched,
     );
   }
 
@@ -206,6 +243,9 @@ class MeasurementsCompanion extends UpdateCompanion<Measurement> {
     if (value.present) {
       map['value'] = Variable<double>(value.value);
     }
+    if (touched.present) {
+      map['touched'] = Variable<DateTime>(touched.value);
+    }
     return map;
   }
 
@@ -214,7 +254,8 @@ class MeasurementsCompanion extends UpdateCompanion<Measurement> {
     return (StringBuffer('MeasurementsCompanion(')
           ..write('id: $id, ')
           ..write('name: $name, ')
-          ..write('value: $value')
+          ..write('value: $value, ')
+          ..write('touched: $touched')
           ..write(')'))
         .toString();
   }
@@ -236,12 +277,14 @@ typedef $$MeasurementsTableCreateCompanionBuilder = MeasurementsCompanion
   Value<int> id,
   required String name,
   required double value,
+  Value<DateTime> touched,
 });
 typedef $$MeasurementsTableUpdateCompanionBuilder = MeasurementsCompanion
     Function({
   Value<int> id,
   Value<String> name,
   Value<double> value,
+  Value<DateTime> touched,
 });
 
 class $$MeasurementsTableFilterComposer
@@ -261,6 +304,9 @@ class $$MeasurementsTableFilterComposer
 
   ColumnFilters<double> get value => $composableBuilder(
       column: $table.value, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get touched => $composableBuilder(
+      column: $table.touched, builder: (column) => ColumnFilters(column));
 }
 
 class $$MeasurementsTableOrderingComposer
@@ -280,6 +326,9 @@ class $$MeasurementsTableOrderingComposer
 
   ColumnOrderings<double> get value => $composableBuilder(
       column: $table.value, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get touched => $composableBuilder(
+      column: $table.touched, builder: (column) => ColumnOrderings(column));
 }
 
 class $$MeasurementsTableAnnotationComposer
@@ -299,6 +348,9 @@ class $$MeasurementsTableAnnotationComposer
 
   GeneratedColumn<double> get value =>
       $composableBuilder(column: $table.value, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get touched =>
+      $composableBuilder(column: $table.touched, builder: (column) => column);
 }
 
 class $$MeasurementsTableTableManager extends RootTableManager<
@@ -327,21 +379,25 @@ class $$MeasurementsTableTableManager extends RootTableManager<
             Value<int> id = const Value.absent(),
             Value<String> name = const Value.absent(),
             Value<double> value = const Value.absent(),
+            Value<DateTime> touched = const Value.absent(),
           }) =>
               MeasurementsCompanion(
             id: id,
             name: name,
             value: value,
+            touched: touched,
           ),
           createCompanionCallback: ({
             Value<int> id = const Value.absent(),
             required String name,
             required double value,
+            Value<DateTime> touched = const Value.absent(),
           }) =>
               MeasurementsCompanion.insert(
             id: id,
             name: name,
             value: value,
+            touched: touched,
           ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
