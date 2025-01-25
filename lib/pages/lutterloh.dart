@@ -23,10 +23,9 @@ class _LutterlohScreenState extends State<LutterlohScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context).colorScheme;
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
           title: Text(AppLocalizations.of(context)!.appTitle),
         ),
         body: Padding(
