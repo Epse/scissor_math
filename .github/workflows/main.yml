@@ -16,6 +16,8 @@ jobs:
           channel: stable
       - run: flutter pub get
       #- run: flutter test
+      - name: Codegen
+        run: flutter pub run build_runner build
       - name: Build static files
         id: build
         run: flutter build web --base-href /scissor_math/
