@@ -19,5 +19,11 @@
   },
   "patternRadius": "Radius from pattern",
   "measurementHipBust": "Measurement (hip or bust) in cm",
-  "measurements": "Measurements"
+  "measurements": "Measurements",
+  "loading": "Loading...",
+  "error": "Error",
+  "newWord": "New",
+  "measurement": "measurement",
+  "cancel": "Cancel",
+  "save": "Save"
 }

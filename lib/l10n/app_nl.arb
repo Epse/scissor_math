@@ -5,5 +5,11 @@
   "result": "Resultaat: {result} {unit}",
   "patternRadius": "Straal van patroon",
   "measurementHipBust": "Maat (heup of borst) in cm",
-  "measurements": "Maten"
+  "measurements": "Maten",
+  "loading": "Laden...",
+  "error": "Fout",
+  "newWord": "Nieuw",
+  "measurement": "Maat",
+  "cancel": "Annuleren",
+  "save": "Opslaan"
 }
