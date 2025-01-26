@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:scissor_math/widgets/measurement_field.dart';
 
 class LutterlohScreen extends StatefulWidget {
   const LutterlohScreen({super.key});
@@ -34,13 +35,8 @@ class _LutterlohScreenState extends State<LutterlohScreen> {
             Text(AppLocalizations.of(context)!.lSystem,
                 style: Theme.of(context).textTheme.headlineLarge),
             Padding(padding: EdgeInsets.all(16.0)),
-            TextField(
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: AppLocalizations.of(context)!.measurementHipBust,
-                ),
-                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            MeasurementField(
+                labelText: AppLocalizations.of(context)!.measurementHipBust,
                 onChanged: (String input) {
                   setState(() {
                     measurement = double.tryParse(input) ?? 0;

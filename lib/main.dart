@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:provider/provider.dart';
-import 'package:scissor_math/data/database.dart';
 import 'package:scissor_math/pages/lutterloh.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
   runApp(
-    Provider<Database>(
-      create: (context) => Database(),
-      child: const MyApp(),
-      dispose: (context, db) => db.close(),
+    ProviderScope(
+      child: const MyApp()
     )
   );
 }

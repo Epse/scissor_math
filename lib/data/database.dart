@@ -65,9 +65,10 @@ class Database extends _$Database {
     );
   }
 
-  Selectable<Measurement> all() {
-    return select(measurements)
+  Stream<List<Measurement>> all() {
+    final query = select(measurements)
         ..orderBy([(t) => OrderingTerm(expression: t.touched)]);
+    return query.watch();
   }
 
   static final StateProvider<Database> provider = StateProvider((ref) {
