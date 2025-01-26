@@ -18,5 +18,17 @@
     }
   },
   "patternRadius": "Radius from pattern",
-  "measurementHipBust": "Measurement (hip or bust) in cm"
+  "radiusHelper": "Number indicated at a dot on the pattern",
+  "measurementHipBust": "Measurement (hip or bust) in cm",
+  "measurements": "Measurements",
+  "loading": "Loading...",
+  "error": "Error",
+  "newWord": "New",
+  "measurement": "measurement",
+  "cancel": "Cancel",
+  "save": "Save",
+  "saveMeasurement": "Save Measurement",
+  "errorEnterText": "Please enter some text",
+  "errorEnterNumber": "Please enter a number",
+  "nameThisMeasurement": "Name this measurement"
 }

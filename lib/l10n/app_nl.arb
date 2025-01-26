@@ -4,5 +4,17 @@
   "correction": "Correctiefactor: {correction} {unit}",
   "result": "Resultaat: {result} {unit}",
   "patternRadius": "Straal van patroon",
-  "measurementHipBust": "Maat (heup of borst) in cm"
+  "radiusHelper": "Getal dat aangeduid staat bij een punt op het patroon",
+  "measurementHipBust": "Maat (heup of borst) in cm",
+  "measurements": "Maten",
+  "loading": "Laden...",
+  "error": "Fout",
+  "newWord": "Nieuw",
+  "measurement": "Maat",
+  "cancel": "Annuleren",
+  "save": "Opslaan",
+  "saveMeasurement": "Sla Maat op",
+  "errorEnterText": "Geef wat tekst in",
+  "errorEnterNumber": "Geef een getal in",
+  "nameThisMeasurement": "Geef deze Maat een naam"
 }
