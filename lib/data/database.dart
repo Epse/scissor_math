@@ -75,6 +75,10 @@ class Database extends _$Database {
     return into(measurements).insert(entry);
   }
 
+  Future<int> deleteMeasurement(int id) {
+    return (delete(measurements)..where((t) => t.id.isValue(id))).go();
+  }
+
   static final StateProvider<Database> provider = StateProvider((ref) {
     final database = Database();
     ref.onDispose(database.close);

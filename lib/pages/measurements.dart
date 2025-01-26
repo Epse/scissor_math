@@ -13,6 +13,17 @@ final _measurementsProvider = StreamProvider((ref) {
 class MeasurementScreen extends ConsumerWidget {
   const MeasurementScreen({super.key});
 
+  Widget _measurementRow(WidgetRef ref, Measurement measurement) {
+    return ListTile(
+      title: Text(measurement.name),
+      subtitle: Text(measurement.value.toStringAsFixed(1)),
+      trailing: IconButton(icon: Icon(Icons.delete), onPressed: (){
+        final database = ref.watch(Database.provider);
+        database.deleteMeasurement(measurement.id);
+      },),
+    );
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final AsyncValue<List<Measurement>> _measurements =
@@ -22,14 +33,7 @@ class MeasurementScreen extends ConsumerWidget {
       drawer: MyDrawer(thisRoute: "/measurements",),
       body: ListView(
           children: _measurements.when(
-              data: (measurements) => measurements.map((m) {
-                    return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(m.name),
-                          Text(m.value.toStringAsFixed(1)),
-                        ]);
-                  }).toList(),
+              data: (measurements) => measurements.map((m) => _measurementRow(ref, m)).toList(),
               error: (error, stack) => [Text("Error: $error")],
               loading: () => [Text("Loading...")])),
     );
