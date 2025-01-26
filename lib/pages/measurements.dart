@@ -38,13 +38,15 @@ class MeasurementScreen extends ConsumerWidget {
       drawer: MyDrawer(
         thisRoute: "/measurements",
       ),
-      body: ListView(
-          children: _measurements.when(
-              data: (measurements) =>
-                  measurements.map((m) => _measurementRow(ref, m)).toList(),
-              error: (error, stack) =>
-                  [Text("${AppLocalizations.of(context)!.error}: $error")],
-              loading: () => [Text(AppLocalizations.of(context)!.loading)])),
+      body: SafeArea(
+          child: ListView(
+              children: _measurements.when(
+                  data: (measurements) =>
+                      measurements.map((m) => _measurementRow(ref, m)).toList(),
+                  error: (error, stack) =>
+                      [Text("${AppLocalizations.of(context)!.error}: $error")],
+                  loading: () =>
+                      [Text(AppLocalizations.of(context)!.loading)]))),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
             newMeasurement(context);

@@ -29,12 +29,14 @@ class _LutterlohScreenState extends State<LutterlohScreen> {
     final loc = AppLocalizations.of(context)!;
     return Scaffold(
         appBar: appBar(context),
-        drawer: MyDrawer(thisRoute: "/",),
+        drawer: MyDrawer(
+          thisRoute: "/",
+        ),
         body: Padding(
           padding: EdgeInsets.all(16.0),
-          child: ListView(children: [
-            Text(loc.lSystem,
-                style: Theme.of(context).textTheme.headlineLarge),
+          child: SafeArea(
+              child: ListView(children: [
+            Text(loc.lSystem, style: Theme.of(context).textTheme.headlineLarge),
             Padding(padding: EdgeInsets.all(16.0)),
             MeasurementField(
                 labelText: loc.measurementHipBust,
@@ -68,7 +70,7 @@ class _LutterlohScreenState extends State<LutterlohScreen> {
                 loc.result(
                     "cm", _lutterloh(measurement, radius).toStringAsFixed(1)),
                 style: Theme.of(context).textTheme.titleLarge)
-          ]),
+          ])),
         ));
   }
 }
