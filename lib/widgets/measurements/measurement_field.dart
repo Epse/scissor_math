@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scissor_math/data/database.dart';
 import 'package:scissor_math/widgets/measurements/save_modal.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 final _measurements = StreamProvider((ref) {
   final database = ref.watch(Database.provider);
@@ -48,6 +49,7 @@ class _MeasurementFieldState extends ConsumerState<MeasurementField> {
   @override
   Widget build(BuildContext context) {
     final AsyncValue<List<Measurement>> measurements = ref.watch(_measurements);
+    final loc = AppLocalizations.of(context)!;
 
     return Row(children: [
       Expanded(
@@ -99,7 +101,9 @@ class _MeasurementFieldState extends ConsumerState<MeasurementField> {
         if (parsed != null) {
           saveMeasurement(context, parsed);
         }
-      }, icon: Icon(Icons.save)),
+      }, icon: Icon(Icons.save),
+        tooltip: loc.saveMeasurement,
+      ),
     ]);
   }
 }

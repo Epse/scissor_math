@@ -37,7 +37,7 @@ class _NewModalState extends ConsumerState<NewModal> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     spacing: 16.0,
                     children: [
-                      Text("Store measurement",
+                      Text(loc.saveMeasurement,
                           style: Theme.of(context).textTheme.headlineMedium),
                       TextFormField(
                         controller: numberController,
@@ -49,10 +49,10 @@ class _NewModalState extends ConsumerState<NewModal> {
                         ),
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                            return loc.errorEnterText;
                           }
                           if (double.tryParse(value) == null) {
-                            return 'Please enter a number';
+                            return loc.errorEnterNumber;
                           }
                           return null;
                         },
@@ -64,11 +64,11 @@ class _NewModalState extends ConsumerState<NewModal> {
                         controller: controller,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: "Name this measurement",
+                          labelText: loc.nameThisMeasurement,
                         ),
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                            return loc.errorEnterText;
                           }
                           return null;
                         },

@@ -26,17 +26,18 @@ class _LutterlohScreenState extends State<LutterlohScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context)!;
     return Scaffold(
         appBar: appBar(context),
         drawer: MyDrawer(thisRoute: "/",),
         body: Padding(
           padding: EdgeInsets.all(16.0),
           child: ListView(children: [
-            Text(AppLocalizations.of(context)!.lSystem,
+            Text(loc.lSystem,
                 style: Theme.of(context).textTheme.headlineLarge),
             Padding(padding: EdgeInsets.all(16.0)),
             MeasurementField(
-                labelText: AppLocalizations.of(context)!.measurementHipBust,
+                labelText: loc.measurementHipBust,
                 onChanged: (String input) {
                   setState(() {
                     measurement = double.tryParse(input) ?? 0;
@@ -44,7 +45,7 @@ class _LutterlohScreenState extends State<LutterlohScreen> {
                 }),
             Padding(padding: EdgeInsets.all(8.0)),
             Text(
-                AppLocalizations.of(context)!.correction(
+                loc.correction(
                     _lutterlohCorrection(measurement).toStringAsFixed(1), "cm"),
                 style: Theme.of(context).textTheme.titleMedium),
             Padding(padding: EdgeInsets.all(8.0)),
@@ -52,7 +53,8 @@ class _LutterlohScreenState extends State<LutterlohScreen> {
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: AppLocalizations.of(context)!.patternRadius,
+                helperText: loc.radiusHelper,
+                labelText: loc.patternRadius,
               ),
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               onChanged: (String input) {
@@ -63,7 +65,7 @@ class _LutterlohScreenState extends State<LutterlohScreen> {
             ),
             Padding(padding: EdgeInsets.all(8.0)),
             Text(
-                AppLocalizations.of(context)!.result(
+                loc.result(
                     "cm", _lutterloh(measurement, radius).toStringAsFixed(1)),
                 style: Theme.of(context).textTheme.titleLarge)
           ]),

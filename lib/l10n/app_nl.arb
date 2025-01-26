@@ -4,6 +4,7 @@
   "correction": "Correctiefactor: {correction} {unit}",
   "result": "Resultaat: {result} {unit}",
   "patternRadius": "Straal van patroon",
+  "radiusHelper": "Getal dat aangeduid staat bij een punt op het patroon",
   "measurementHipBust": "Maat (heup of borst) in cm",
   "measurements": "Maten",
   "loading": "Laden...",
@@ -11,5 +12,9 @@
   "newWord": "Nieuw",
   "measurement": "Maat",
   "cancel": "Annuleren",
-  "save": "Opslaan"
+  "save": "Opslaan",
+  "saveMeasurement": "Sla Maat op",
+  "errorEnterText": "Geef wat tekst in",
+  "errorEnterNumber": "Geef een getal in",
+  "nameThisMeasurement": "Geef deze Maat een naam"
 }

@@ -2,6 +2,7 @@ import 'package:drift/drift.dart' show Value;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scissor_math/data/database.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Future<void> saveMeasurement(BuildContext context, double value) {
   return showDialog<void>(
@@ -25,6 +26,7 @@ class _SaveModalState extends ConsumerState<SaveModal> {
   @override
   Widget build(BuildContext context) {
     final database = ref.watch(Database.provider);
+    final loc = AppLocalizations.of(context)!;
 
     return Dialog(
         child: Padding(
@@ -36,21 +38,27 @@ class _SaveModalState extends ConsumerState<SaveModal> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     spacing: 16.0,
                     children: [
-                      Text("Store measurement",
+                      Text(loc.saveMeasurement,
                           style: Theme.of(context).textTheme.headlineMedium),
-                      Text(
-                        "Store measurement ${widget.value.toStringAsFixed(1)}",
+                      TextFormField(
+                        keyboardType: TextInputType.number,
+                        enabled: false,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: loc.measurement,
+                        ),
+                        initialValue: widget.value.toStringAsFixed(1),
                       ),
                       TextFormField(
                         controller: controller,
                         autofocus: true,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: "Name this measurement",
+                          labelText: loc.nameThisMeasurement,
                         ),
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                            return loc.errorEnterText;
                           }
                           return null;
                         },
@@ -59,7 +67,7 @@ class _SaveModalState extends ConsumerState<SaveModal> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           TextButton(
-                            child: Text("Cancel"),
+                            child: Text(loc.cancel),
                             onPressed: () => {Navigator.pop(context)},
                           ),
                           TextButton(
@@ -76,7 +84,7 @@ class _SaveModalState extends ConsumerState<SaveModal> {
                                 Navigator.pop(context);
                               });
                             },
-                            child: Text("Save"),
+                            child: Text(loc.save),
                           )
                         ],
                       )
