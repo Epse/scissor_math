@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scissor_math/data/database.dart';
+import 'package:scissor_math/widgets/measurements/save_modal.dart';
 
 final _measurements = StreamProvider((ref) {
   final database = ref.watch(Database.provider);
@@ -100,7 +101,10 @@ class _MeasurementFieldState extends ConsumerState<MeasurementField> {
         },
       )),
       IconButton(onPressed: () {
-        // TODO add measurement saving
+        final parsed = double.tryParse(textController.value.text);
+        if (parsed != null) {
+          saveMeasurement(context, parsed);
+        }
       }, icon: Icon(Icons.save)),
     ]);
   }

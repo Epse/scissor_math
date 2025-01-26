@@ -71,6 +71,10 @@ class Database extends _$Database {
     return query.watch();
   }
 
+  Future<int> addMeasurement(MeasurementsCompanion entry) {
+    return into(measurements).insert(entry);
+  }
+
   static final StateProvider<Database> provider = StateProvider((ref) {
     final database = Database();
     ref.onDispose(database.close);

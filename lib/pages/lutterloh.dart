@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:scissor_math/widgets/measurement_field.dart';
+import 'package:scissor_math/widgets/measurements/measurement_field.dart';
 
 class LutterlohScreen extends StatefulWidget {
   const LutterlohScreen({super.key});
