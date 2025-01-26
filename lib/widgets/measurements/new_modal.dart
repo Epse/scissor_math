@@ -32,13 +32,11 @@ class _NewModalState extends ConsumerState<NewModal> {
             padding: EdgeInsets.all(24.0),
             child: Form(
                 key: _formKey,
-                child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    spacing: 16.0,
+                child: ListView(
                     children: [
                       Text(loc.saveMeasurement,
                           style: Theme.of(context).textTheme.headlineMedium),
+                      SizedBox(height: 16.0),
                       TextFormField(
                         controller: numberController,
                         autofocus: true,
@@ -60,6 +58,7 @@ class _NewModalState extends ConsumerState<NewModal> {
                           FilteringTextInputFormatter.digitsOnly
                         ],
                       ),
+                      SizedBox(height: 8.0),
                       TextFormField(
                         controller: controller,
                         decoration: InputDecoration(
@@ -73,6 +72,7 @@ class _NewModalState extends ConsumerState<NewModal> {
                           return null;
                         },
                       ),
+                      SizedBox(height: 24.0),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
