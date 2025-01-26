@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:scissor_math/widgets/app_bar.dart';
+import 'package:scissor_math/widgets/drawer.dart';
 import 'package:scissor_math/widgets/measurements/measurement_field.dart';
 
 class LutterlohScreen extends StatefulWidget {
@@ -25,10 +27,8 @@ class _LutterlohScreenState extends State<LutterlohScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-          title: Text(AppLocalizations.of(context)!.appTitle),
-        ),
+        appBar: appBar(context),
+        drawer: MyDrawer(thisRoute: "/",),
         body: Padding(
           padding: EdgeInsets.all(16.0),
           child: ListView(children: [

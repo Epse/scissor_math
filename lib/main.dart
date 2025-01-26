@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:scissor_math/data/routes.dart';
 import 'package:scissor_math/pages/lutterloh.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -30,9 +31,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       supportedLocales: AppLocalizations.supportedLocales,
-      routes: {
-        "/": (context) => const LutterlohScreen(),
-      },
+      routes: routables,
     );
   }
 }

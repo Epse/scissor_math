@@ -27,12 +27,6 @@ class _MeasurementFieldState extends ConsumerState<MeasurementField> {
       ValueChanged<String> onPressed) {
     return asyncMeasurements.when(
         data: (measurements) {
-          measurements = [
-            Measurement(
-                id: 0, name: "Hip", value: 114.0, touched: DateTime.now()),
-            Measurement(
-                id: 1, name: "Bust", value: 84, touched: DateTime.now()),
-          ];
           return measurements
               .map((measurement) => MenuItemButton(
                     closeOnActivate: true,

@@ -4,5 +4,6 @@
   "correction": "Correctiefactor: {correction} {unit}",
   "result": "Resultaat: {result} {unit}",
   "patternRadius": "Straal van patroon",
-  "measurementHipBust": "Maat (heup of borst) in cm"
+  "measurementHipBust": "Maat (heup of borst) in cm",
+  "measurements": "Maten"
 }
