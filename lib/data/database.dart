@@ -1,8 +1,8 @@
 import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart' show getApplicationSupportDirectory;
 import 'package:flutter/foundation.dart';
-import 'package:riverpod/legacy.dart';
 import 'connection/connection.dart' as impl;
 
 part 'database.g.dart';
@@ -79,7 +79,7 @@ class Database extends _$Database {
     return (delete(measurements)..where((t) => t.id.isValue(id))).go();
   }
 
-  static final StateProvider<Database> provider = StateProvider((ref) {
+  static final Provider<Database> provider = Provider((ref) {
     final database = Database();
     ref.onDispose(database.close);
 

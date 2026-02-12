@@ -1,0 +1,2 @@
+/home/e/repositories/scissor_math/android/app/.cxx/RelWithDebInfo/5nu3n225/armeabi-v7a/CMakeFiles/edit_cache.dir
+/home/e/repositories/scissor_math/android/app/.cxx/RelWithDebInfo/5nu3n225/armeabi-v7a/CMakeFiles/rebuild_cache.dir
