@@ -45,6 +45,9 @@ dependencies:
   flutter_riverpod: ^2.6.1
   riverpod_annotation: ^2.6.1
 
+  drift_dev: any
+  sqlite3: any
+  path: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -56,7 +59,6 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
 
-  drift_dev: ^2.24.0
   build_runner: ^2.4.14
   riverpod_generator: ^2.6.4
   custom_lint: ^0.7.1

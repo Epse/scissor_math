@@ -31,7 +31,7 @@ class MeasurementScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final AsyncValue<List<Measurement>> _measurements =
+    final AsyncValue<List<Measurement>> measurements =
         ref.watch(_measurementsProvider);
     return Scaffold(
       appBar: appBar(context),
@@ -40,7 +40,7 @@ class MeasurementScreen extends ConsumerWidget {
       ),
       body: SafeArea(
           child: ListView(
-              children: _measurements.when(
+              children: measurements.when(
                   data: (measurements) =>
                       measurements.map((m) => _measurementRow(ref, m)).toList(),
                   error: (error, stack) =>
