@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart' hide Route;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:scissor_math/l10n/app_localizations.dart';
 import 'package:scissor_math/data/routes.dart' show Route, routes;
 
 class MyDrawer extends StatelessWidget {

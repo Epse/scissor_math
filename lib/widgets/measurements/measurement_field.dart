@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scissor_math/data/database.dart';
 import 'package:scissor_math/widgets/measurements/save_modal.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:scissor_math/l10n/app_localizations.dart';
 
 final _measurements = StreamProvider((ref) {
   final database = ref.watch(Database.provider);

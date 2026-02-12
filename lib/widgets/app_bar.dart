@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:scissor_math/l10n/app_localizations.dart';
 
 AppBar appBar(BuildContext context, {String? title}) {
   return AppBar(

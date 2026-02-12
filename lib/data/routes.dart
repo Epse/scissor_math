@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart' hide Route;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:scissor_math/l10n/app_localizations.dart';
 import 'package:scissor_math/pages/measurements.dart';
 import '../pages/lutterloh.dart';
 

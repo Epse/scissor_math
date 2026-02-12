@@ -2,7 +2,7 @@ import 'package:drift/drift.dart' show Value;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scissor_math/data/database.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:scissor_math/l10n/app_localizations.dart';
 
 Future<void> saveMeasurement(BuildContext context, double value) {
   return showDialog<void>(
