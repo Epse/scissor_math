@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:scissor_math/data/database.dart';
+import 'package:scissor_math/misc.dart';
 import 'package:scissor_math/widgets/measurements/save_modal.dart';
 import 'package:scissor_math/l10n/app_localizations.dart';
 
@@ -82,7 +84,7 @@ class _MeasurementFieldState extends ConsumerState<MeasurementField> {
           );
           return TextField(
             controller: textController,
-            keyboardType: TextInputType.number,
+            keyboardType: TextInputType.numberWithOptions(signed: false, decimal: true),
             onTap: () {
               menuController.open();
             },
@@ -91,7 +93,7 @@ class _MeasurementFieldState extends ConsumerState<MeasurementField> {
                 labelText: widget.labelText,
                 prefixIcon: Icon(Icons.straighten),
                 suffixIcon: trailingButton),
-            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            inputFormatters: [NumberFormatter],
             onChanged: widget.onChanged,
           );
         },

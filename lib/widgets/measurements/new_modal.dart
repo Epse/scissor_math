@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scissor_math/data/database.dart';
+import 'package:scissor_math/misc.dart';
 
 Future<void> newMeasurement(BuildContext context) {
   return showDialog<void>(
@@ -55,7 +56,7 @@ class _NewModalState extends ConsumerState<NewModal> {
                           return null;
                         },
                         inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly
+                          NumberFormatter
                         ],
                       ),
                       SizedBox(height: 8.0),
