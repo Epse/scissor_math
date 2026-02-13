@@ -33,75 +33,72 @@ class _NewModalState extends ConsumerState<NewModal> {
             padding: EdgeInsets.all(24.0),
             child: Form(
                 key: _formKey,
-                child: ListView(
+                child: Column(mainAxisSize: MainAxisSize.min, children: [
+                  Text(loc.saveMeasurement,
+                      style: Theme.of(context).textTheme.headlineMedium),
+                  SizedBox(height: 16.0),
+                  TextFormField(
+                    controller: numberController,
+                    autofocus: true,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: loc.measurement,
+                    ),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return loc.errorEnterText;
+                      }
+                      if (double.tryParse(value) == null) {
+                        return loc.errorEnterNumber;
+                      }
+                      return null;
+                    },
+                    inputFormatters: [NumberFormatter],
+                  ),
+                  SizedBox(height: 8.0),
+                  TextFormField(
+                    controller: controller,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: loc.nameThisMeasurement,
+                    ),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return loc.errorEnterText;
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 24.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text(loc.saveMeasurement,
-                          style: Theme.of(context).textTheme.headlineMedium),
-                      SizedBox(height: 16.0),
-                      TextFormField(
-                        controller: numberController,
-                        autofocus: true,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: loc.measurement,
-                        ),
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return loc.errorEnterText;
-                          }
-                          if (double.tryParse(value) == null) {
-                            return loc.errorEnterNumber;
-                          }
-                          return null;
-                        },
-                        inputFormatters: [
-                          NumberFormatter
-                        ],
+                      TextButton(
+                        child: Text(loc.cancel),
+                        onPressed: () => {Navigator.pop(context)},
                       ),
-                      SizedBox(height: 8.0),
-                      TextFormField(
-                        controller: controller,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: loc.nameThisMeasurement,
-                        ),
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return loc.errorEnterText;
+                      TextButton(
+                        onPressed: () {
+                          if (!_formKey.currentState!.validate()) {
+                            return;
                           }
-                          return null;
+
+                          final parsed =
+                              double.parse(numberController.value.text);
+
+                          database
+                              .addMeasurement(MeasurementsCompanion(
+                                  name: Value(controller.value.text),
+                                  value: Value(parsed)))
+                              .then((int saved) {
+                            Navigator.pop(context);
+                          });
                         },
-                      ),
-                      SizedBox(height: 24.0),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          TextButton(
-                            child: Text(loc.cancel),
-                            onPressed: () => {Navigator.pop(context)},
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              if (!_formKey.currentState!.validate()) {
-                                return;
-                              }
-
-                              final parsed =
-                                  double.parse(numberController.value.text);
-
-                              database
-                                  .addMeasurement(MeasurementsCompanion(
-                                      name: Value(controller.value.text),
-                                      value: Value(parsed)))
-                                  .then((int saved) {
-                                Navigator.pop(context);
-                              });
-                            },
-                            child: Text(loc.save),
-                          )
-                        ],
+                        child: Text(loc.save),
                       )
-                    ]))));
+                    ],
+                  )
+                ]))));
   }
 }
