@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:scissor_math/l10n/app_localizations.dart';
 import 'package:scissor_math/data/routes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,7 +21,10 @@ class MyApp extends StatelessWidget {
       onGenerateTitle: (context) {
         return AppLocalizations.of(context)!.appTitle;
       },
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        ...GlobalMaterialLocalizations.delegates
+      ],
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
             seedColor: Color.fromARGB(255, 255, 221, 86),

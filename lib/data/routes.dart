@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart' hide Route;
+import 'package:material_ui/material_ui.dart' hide Route;
 import 'package:scissor_math/l10n/app_localizations.dart';
 import 'package:scissor_math/pages/measurements.dart';
 import '../pages/lutterloh.dart';
